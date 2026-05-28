@@ -6,74 +6,58 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #141e30, #243b55);
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    color: white;
 }
 
 .container {
-    background: rgba(255,255,255,0.1);
+    background: white;
     padding: 30px;
     border-radius: 15px;
     width: 400px;
-    backdrop-filter: blur(10px);
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
 h1 {
-    text-align: center;
     margin-bottom: 20px;
+    color: #333;
 }
 
-.input-section {
+.search-box {
     display: flex;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 input {
     flex: 1;
     padding: 10px;
-    border: none;
+    border: 2px solid #4facfe;
     border-radius: 5px;
 }
 
 button {
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
+    background: #4facfe;
+    color: white;
     border-radius: 5px;
     cursor: pointer;
-    background: #ffd700;
-    font-weight: bold;
 }
 
-.filters {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+button:hover {
+    background: #00c6fb;
 }
 
-ul {
-    list-style: none;
+.weather-card {
     margin-top: 20px;
 }
 
-li {
-    background: rgba(255,255,255,0.2);
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.completed {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-
-.task-buttons button {
-    margin-left: 5px;
+.weather-card p {
+    margin: 10px 0;
+    color: #444;
 }
