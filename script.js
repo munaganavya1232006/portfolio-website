@@ -1,118 +1,59 @@
-const taskInput = document.getElementById("taskInput");
-const addBtn = document.getElementById("addBtn");
-const taskList = document.getElementById("taskList");
-const filterButtons = document.querySelectorAll(".filter-btn");
+const apiKey = "3935d6e04cb33f61be2ef2683d0568de";
 
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+const searchBtn = document.getElementById("searchBtn");
 
-function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-}
+const cityInput = document.getElementById("cityInput");
 
-function renderTasks(filter = "all") {
+const cityName = document.getElementById("cityName");
 
-    taskList.innerHTML = "";
+const temperature = document.getElementById("temperature");
 
-    let filteredTasks = tasks.filter(task => {
+const description = document.getElementById("description");
 
-        if (filter === "active") return !task.completed;
+const humidity = document.getElementById("humidity");
 
-        if (filter === "completed") return task.completed;
+const wind = document.getElementById("wind");
 
-        return true;
-    });
+searchBtn.addEventListener("click", async () => {
 
-    filteredTasks.forEach((task, index) => {
+    const city = cityInput.value;
 
-        const li = document.createElement("li");
-
-        if (task.completed) {
-            li.classList.add("completed");
-        }
-
-        li.innerHTML = `
-            <span>${task.text}</span>
-
-            <div class="task-buttons">
-
-                <button onclick="toggleTask(${index})">
-                    ${task.completed ? "Undo" : "Done"}
-                </button>
-
-                <button onclick="editTask(${index})">
-                    Edit
-                </button>
-
-                <button onclick="deleteTask(${index})">
-                    Delete
-                </button>
-
-            </div>
-        `;
-
-        taskList.appendChild(li);
-    });
-}
-
-function addTask() {
-
-    const text = taskInput.value.trim();
-
-    if (text === "") {
-        alert("Please enter a task");
+    if(city === "") {
+        alert("Please enter a city name");
         return;
     }
 
-    tasks.push({
-        text: text,
-        completed: false
-    });
+    const url =
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-    saveTasks();
-    renderTasks();
+    try {
 
-    taskInput.value = "";
-}
+        const response = await fetch(url);
 
-function toggleTask(index) {
+        if(!response.ok) {
+            throw new Error("City not found");
+        }
 
-    tasks[index].completed = !tasks[index].completed;
+        const data = await response.json();
 
-    saveTasks();
-    renderTasks();
-}
+        cityName.textContent = data.name;
 
-function deleteTask(index) {
+        temperature.textContent =
+        `Temperature: ${data.main.temp} °C`;
 
-    tasks.splice(index, 1);
+        description.textContent =
+        `Weather: ${data.weather[0].description}`;
 
-    saveTasks();
-    renderTasks();
-}
+        humidity.textContent =
+        `Humidity: ${data.main.humidity}%`;
 
-function editTask(index) {
+        wind.textContent =
+        `Wind Speed: ${data.wind.speed} m/s`;
 
-    const updatedText = prompt("Edit task:", tasks[index].text);
-
-    if (updatedText !== null) {
-
-        tasks[index].text = updatedText;
-
-        saveTasks();
-        renderTasks();
     }
-}
 
-addBtn.addEventListener("click", addTask);
+    catch(error) {
 
-filterButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        const filter = button.getAttribute("data-filter");
-
-        renderTasks(filter);
-    });
+        alert(error.message);
+    }
 });
-
-renderTasks();
