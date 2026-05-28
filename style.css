@@ -6,160 +6,74 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #1e3c72, #2a5298);
-    color: #fff;
-    line-height: 1.6;
-}
-
-/* HEADER */
-
-header {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(5px);
-}
-
-header h1 {
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 2.5rem;
-}
-
-/* NAVIGATION */
-
-nav ul {
+    background: linear-gradient(to right, #141e30, #243b55);
     display: flex;
     justify-content: center;
-    list-style: none;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-nav a {
+    align-items: center;
+    height: 100vh;
     color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: 0.3s;
 }
 
-nav a:hover {
-    background: white;
-    color: #2a5298;
-}
-
-/* MAIN */
-
-main {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 40px 0;
-}
-
-/* SECTIONS */
-
-section {
-    background: rgba(255, 255, 255, 0.1);
-    margin-bottom: 30px;
+.container {
+    background: rgba(255,255,255,0.1);
     padding: 30px;
     border-radius: 15px;
-    backdrop-filter: blur(8px);
-    transition: transform 0.3s ease;
+    width: 400px;
+    backdrop-filter: blur(10px);
 }
 
-section:hover {
-    transform: translateY(-5px);
-}
-
-section h2 {
-    margin-bottom: 15px;
-    color: #ffd700;
-}
-
-/* SKILLS LIST */
-
-ul {
-    padding-left: 20px;
-}
-
-ul li {
-    margin-bottom: 10px;
-}
-
-/* FORM */
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input,
-textarea {
-    padding: 12px;
-    margin-top: 8px;
+h1 {
+    text-align: center;
     margin-bottom: 20px;
+}
+
+.input-section {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
     border: none;
-    border-radius: 8px;
-    outline: none;
+    border-radius: 5px;
 }
 
 button {
-    background: #ffd700;
-    color: black;
+    padding: 10px;
     border: none;
-    padding: 12px;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
+    background: #ffd700;
     font-weight: bold;
-    transition: 0.3s;
 }
 
-button:hover {
-    background: white;
+.filters {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
-/* FOOTER */
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.7);
+ul {
+    list-style: none;
+    margin-top: 20px;
 }
 
-/* RESPONSIVE DESIGN */
-
-@media (max-width: 768px) {
-
-    header h1 {
-        font-size: 2rem;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    section {
-        padding: 20px;
-    }
+li {
+    background: rgba(255,255,255,0.2);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-@media (max-width: 480px) {
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
 
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    nav a {
-        width: 100%;
-        text-align: center;
-    }
-
-    main {
-        width: 95%;
-    }
+.task-buttons button {
+    margin-left: 5px;
 }
